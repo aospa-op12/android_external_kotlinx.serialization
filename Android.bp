@@ -1,0 +1,43 @@
+java_library {
+    name: "kotlinx_serialization_core",
+    host_supported: true,
+    sdk_version: "core_current",
+    srcs: ["core/jvmMain/src/kotlinx/serialization/**/*.kt"],
+    common_srcs: ["core/commonMain/src/kotlinx/serialization/**/*.kt"],
+    kotlincflags: [
+        "-Xmulti-platform",
+        "-Xexpect-actual-classes",
+        "-opt-in=kotlin.ExperimentalStdlibApi",
+        "-opt-in=kotlin.ExperimentalMultiplatform",
+        "-opt-in=kotlinx.serialization.internal.CoreFriendModuleApi",
+        "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+        "-opt-in=kotlinx.serialization.InternalSerializationApi",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+}
+
+java_library {
+    name: "kotlinx_serialization_json",
+    host_supported: true,
+    sdk_version: "core_current",
+    srcs: ["formats/json/jvmMain/src/kotlinx/serialization/**/*.kt"],
+    common_srcs: ["formats/json/commonMain/src/kotlinx/serialization/**/*.kt"],
+    kotlincflags: [
+        "-Xmulti-platform",
+        "-Xexpect-actual-classes",
+        "-opt-in=kotlin.ExperimentalStdlibApi",
+        "-opt-in=kotlin.ExperimentalMultiplatform",
+        "-opt-in=kotlinx.serialization.internal.CoreFriendModuleApi",
+        "-opt-in=kotlinx.serialization.json.internal.JsonFriendModuleApi",
+        "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+        "-opt-in=kotlinx.serialization.InternalSerializationApi",
+    ],
+    static_libs: ["kotlinx_serialization_core"],
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+}
